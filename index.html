@@ -67,6 +67,26 @@ body {
   clear: both;
 }
 
+.node {
+		cursor: pointer;
+	}
+
+	.node circle {
+	  fill: #fff;
+	  stroke: steelblue;
+	  stroke-width: 3px;
+	}
+
+	.node text {
+	  font: 12px sans-serif;
+	}
+
+	.link {
+	  fill: none;
+	  stroke: #ccc;
+	  stroke-width: 2px;
+	}
+
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
   .column.side, .column.middle {
@@ -89,10 +109,7 @@ body {
 
 <div class="row">
   <div class="column side">
-    <div class='dropdown'>
 
-
-	</div>
   Select depth b/w 1-10:
   <input type="text" name="depth" class="enter" value="1" id="depth"/>
   <br>
@@ -106,6 +123,7 @@ body {
       <li> Pawn is auto promoted to queen
       <li> One can use the PGN or FEN to analyze games
     </ul> -->
+    <div id='graph' style="display: none"></div>
   </div>
 
   <div class="column middle">
@@ -113,7 +131,7 @@ body {
     <div id="myBoard" style="width: 600px"></div><br>
 
     <button id="startPositionBtn" class="w3-button w3-black w3-hover-grey">Start</button>
-    <!-- <button id="flipOrientationBtn" class="w3-button w3-black w3-hover-grey">Flip Board</button> -->
+    <button id="flipOrientationBtn" class="w3-button w3-black w3-hover-grey">Turn On Exploration Graph</button>
     <!-- <button id="autoOrientation" class="w3-button w3-black w3-hover-grey">Auto Orientation is Off</button>
     <button id="highlights" class="w3-button w3-black w3-hover-grey">Highlights are On</button> -->
     </center>
@@ -135,6 +153,10 @@ body {
     <div id="fen" style="background-color: #f1f1f1"></div>
     <h3><label>PGN:</label></h3>
     <div id="pgn" style="background-color: #f1f1f1"></div>
+    <br>
+    Selection of graph explorations should happen before starting the simulation.
+    <br>
+    <b>Note</b>: Graph Explorations are best viewed for smaller depths (&lt;5)!
   </div>
 </div>
 
@@ -143,13 +165,12 @@ body {
   <a href="https://github.com/MysteryVaibhav/ChessPositionsCounter">Link to the code</a>
 </div>
 
+<script src="https://d3js.org/d3.v3.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="chessboard.css">
-<link rel="stylesheet" href="styles.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="chessboard.js"></script>
 <script src="chess.js"></script>
 <script src="dice.js"></script>
-
 </body>
 </html>
